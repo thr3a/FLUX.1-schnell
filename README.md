@@ -1,5 +1,5 @@
 ---
-title: FLUX.1 Schnell
+title: FLUX.1 [Schnell]
 emoji: 🏎️💨
 colorFrom: yellow
 colorTo: pink
