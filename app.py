@@ -9,14 +9,14 @@ from transformers import CLIPTextModel, CLIPTokenizer,T5EncoderModel, T5Tokenize
 dtype = torch.bfloat16
 device = "cuda"
 
-sd3_repo = "stabilityai/stable-diffusion-3-medium-diffusers"
-scheduler = FlowMatchEulerDiscreteScheduler.from_pretrained (sd3_repo, subfolder="scheduler")
+bfl_repo = "black-forest-labs/FLUX.1-schnell"
+scheduler = FlowMatchEulerDiscreteScheduler.from_pretrained (bfl_repo, subfolder="scheduler", revision="refs/pr/1")
 text_encoder = CLIPTextModel.from_pretrained("openai/clip-vit-large-patch14", torch_dtype=dtype)
 tokenizer = CLIPTokenizer.from_pretrained("openai/clip-vit-large-patch14", torch_dtype=dtype)
-text_encoder_2 = T5EncoderModel.from_pretrained(sd3_repo, subfolder="text_encoder_3", torch_dtype=dtype)
-tokenizer_2 = T5TokenizerFast.from_pretrained(sd3_repo, subfolder="tokenizer_3", torch_dtype=dtype)
-vae = AutoencoderKL.from_pretrained("diffusers-internal-dev/FLUX.1-schnell", subfolder="vae", torch_dtype=dtype)
-transformer = FluxTransformer2DModel.from_pretrained("diffusers-internal-dev/FLUX.1-schnell", subfolder="transformer", torch_dtype=dtype)
+text_encoder_2 = T5EncoderModel.from_pretrained(bfl_repo, subfolder="text_encoder_2", torch_dtype=dtype, revision="refs/pr/1")
+tokenizer_2 = T5TokenizerFast.from_pretrained(bfl_repo, subfolder="tokenizer_2", torch_dtype=dtype, revision="refs/pr/1")
+vae = AutoencoderKL.from_pretrained("black-forest-labs/FLUX.1-schnell", subfolder="vae", torch_dtype=dtype)
+transformer = FluxTransformer2DModel.from_pretrained("black-forest-labs/FLUX.1-schnell", subfolder="transformer", torch_dtype=dtype, revision="refs/pr/1")
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
